@@ -1,11 +1,11 @@
-import { presetUni } from '@uni-helper/unocss-preset-uni'
+import { presetUni } from "@uni-helper/unocss-preset-uni";
 import {
   defineConfig,
   presetIcons,
   presetAttributify,
   transformerDirectives,
   transformerVariantGroup,
-} from 'unocss'
+} from "unocss";
 
 export default defineConfig({
   presets: [
@@ -14,8 +14,8 @@ export default defineConfig({
       scale: 1.2,
       warn: true,
       extraProperties: {
-        display: 'inline-block',
-        'vertical-align': 'middle',
+        display: "inline-block",
+        "vertical-align": "middle",
       },
     }),
     // 支持css class属性化
@@ -30,29 +30,29 @@ export default defineConfig({
   ],
   shortcuts: [
     {
-      center: 'flex justify-center items-center',
+      center: "flex justify-center items-center",
     },
   ],
   rules: [
     [
-      'p-safe',
+      "p-safe",
       {
         padding:
-          'env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)',
+          "env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)",
       },
     ],
-    ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }],
-    ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }],
+    ["pt-safe", { "padding-top": "env(safe-area-inset-top)" }],
+    ["pb-safe", { "padding-bottom": "env(safe-area-inset-bottom)" }],
   ],
   theme: {
     colors: {
       /** 主题色，用法如: text-primary */
-      primary: 'var(--wot-color-theme,#0957DE)',
+      primary: "var(--wot-color-theme,#0957DE)",
     },
     fontSize: {
       /** 提供更小号的字体，用法如：text-2xs */
-      '2xs': ['20rpx', '28rpx'],
-      '3xs': ['18rpx', '26rpx'],
+      "2xs": ["20rpx", "28rpx"],
+      "3xs": ["18rpx", "26rpx"],
     },
   },
-})
+});

@@ -8,5 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     WdButton: typeof import('wot-design-uni/components/wd-button/wd-button.vue')['default']
+    WdConfigProvider: typeof import('wot-design-uni/components/wd-config-provider/wd-config-provider.vue')['default']
+    WdMessageBox: typeof import('wot-design-uni/components/wd-message-box/wd-message-box.vue')['default']
+    WdToast: typeof import('wot-design-uni/components/wd-toast/wd-toast.vue')['default']
   }
 }

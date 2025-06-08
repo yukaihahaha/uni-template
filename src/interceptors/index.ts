@@ -1,0 +1,1 @@
+export { prototypeInterceptor } from './prototype'
