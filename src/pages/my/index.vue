@@ -1,20 +1,18 @@
 <route lang="json5">
 {
   layout: "default",
-  name:"My",
+  name: "My",
   style: {
     navigationBarTitleText: "My",
   },
 }
 </route>
 <template>
-  <view class="text-area">
-    <text class="title text-32px color-red">Demo{{ LYK }}</text>
-    <image
-      class="w-200rpx h-200rpx"
-      src="@images/niwo.jpg"
-      mode="scaleToFill"
-    />
+  <view class="text-center m-4">
+    <image class="h-40 w-40" src="@images/niwo.jpg" />
+    <view class="my-4">
+      <text class="text-gray-400 font-bold">{{ LYK }}</text>
+    </view>
   </view>
 </template>
 
@@ -22,7 +20,6 @@
 defineOptions({
   name: "My",
 });
-
 const LYK = ref<string>("LTK");
 </script>
 

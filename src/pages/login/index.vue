@@ -1,9 +1,9 @@
-<route lang="json5" type="home">
+<route lang="json5">
 {
   layout: "default",
-  name: "Home",
+  name: "Login",
   style: {
-    navigationBarTitleText: "Home",
+    navigationBarTitleText: "Login",
   },
 }
 </route>
@@ -13,19 +13,14 @@
     <view class="my-4">
       <text class="text-gray-400 font-bold">{{ LYK }}</text>
     </view>
-    <wd-button @click="handleAccountLogin"> 登录 </wd-button>
   </view>
 </template>
 
 <script lang="ts" setup>
 defineOptions({
-  name: "Home",
+  name: "Login",
 });
 const LYK = ref<string>("LTK");
-
-const handleAccountLogin = async () => {
-  console.log(111);
-};
 </script>
 
 <style></style>

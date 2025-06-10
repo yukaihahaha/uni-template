@@ -50,6 +50,15 @@
       }
     },
     {
+      "path": "pages/login/index",
+      "type": "page",
+      "layout": "default",
+      "name": "Login",
+      "style": {
+        "navigationBarTitleText": "Login"
+      }
+    },
+    {
       "path": "pages/my/index",
       "type": "page",
       "layout": "default",
@@ -65,11 +74,11 @@
       "pages": [
         {
           "path": "demo/index",
-          "type": "home",
+          "type": "page",
           "layout": "default",
-          "name": "Demo",
+          "name": "Demp",
           "style": {
-            "navigationBarTitleText": "Demo"
+            "navigationBarTitleText": "Demp"
           }
         }
       ]

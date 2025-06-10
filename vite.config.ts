@@ -19,6 +19,7 @@ import UniLayouts from "@uni-helper/vite-plugin-uni-layouts";
 export default async ({ command, mode }) => {
   const { default: UnoCss } = await import("unocss/vite");
   const env = loadEnv(mode, path.resolve(process.cwd(), "env"));
+  const { UNI_PLATFORM } = process.env; // 从环境变量中获取UNI_PLATFORM
   const {
     VITE_APP_PORT,
     VITE_SERVER_BASEURL,
@@ -27,6 +28,7 @@ export default async ({ command, mode }) => {
     VITE_APP_PROXY,
     VITE_APP_PROXY_PREFIX,
   } = env;
+  console.log("哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈 mode -> ", VITE_APP_PROXY);
   console.log("环境变量 env -> ", env);
   return defineConfig({
     envDir: "./env", // 自定义env目录
@@ -35,6 +37,10 @@ export default async ({ command, mode }) => {
         "@": path.join(process.cwd(), "./src"),
         "@images": path.join(process.cwd(), "./src/static/images"),
       },
+    },
+    define: {
+      __UNI_PLATFORM__: JSON.stringify(UNI_PLATFORM),
+      __VITE_APP_PROXY__: JSON.stringify(VITE_APP_PROXY),
     },
     server: {
       host: "0.0.0.0",
