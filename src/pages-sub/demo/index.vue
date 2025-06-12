@@ -1,6 +1,7 @@
 <route lang="json5">
 {
   layout: "default",
+  needLogin: true,
   name: "Demp",
   style: {
     navigationBarTitleText: "Demp",

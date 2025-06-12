@@ -13,18 +13,23 @@
     <view class="my-4">
       <text class="text-gray-400 font-bold">{{ LYK }}</text>
     </view>
-    <wd-button @click="handleAccountLogin"> 登录 </wd-button>
+    <wd-button @click="handleAccountLogin"> 2登录2 </wd-button>
   </view>
 </template>
 
 <script lang="ts" setup>
+import { needLoginPages, isTableBar } from "@/utils/index";
+import { useToast } from "wot-design-uni";
+const toast = useToast();
 defineOptions({
   name: "Home",
 });
+console.log(needLoginPages);
 const LYK = ref<string>("LTK");
-
 const handleAccountLogin = async () => {
-  console.log(111);
+  uni.navigateTo({
+    url: "/pages-sub/demo/index",
+  });
 };
 </script>
 

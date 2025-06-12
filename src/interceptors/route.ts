@@ -1,7 +1,5 @@
 import { useUserStore } from "@/store";
-
-// 白名单：需要登录的页面（包括 tabBar 页面）
-const whiteList = ["/pages/login/index"];
+import { needLoginPages, getNeedLoginPages } from "@/utils";
 
 let isRedirecting = false;
 
@@ -16,24 +14,19 @@ const navigateInterceptor = {
     const userStore = useUserStore();
     const token = userStore.token || "";
     const url = "url" in options && options.url ? options.url : "";
-
     if (!url) return;
 
-    // 根据跳转类型决定匹配方式
     const method = options as any;
     const isSwitchTab = method && method.openType === "switchTab";
-    const requiresLogin = whiteList.some((path) =>
+    const requiresLogin = needLoginPages.some((path) =>
       isSwitchTab ? path === url : url.startsWith(path)
     );
 
     if (requiresLogin && !token) {
       if (!isRedirecting) {
         isRedirecting = true;
-        uni.showToast({ title: "请先登录", icon: "none" });
-        setTimeout(() => {
-          uni.redirectTo({ url: "/pages/login/index" });
-          isRedirecting = false;
-        }, 1500);
+        uni.redirectTo({ url: "/pages/login/index" });
+        isRedirecting = false;
       }
       return false;
     }

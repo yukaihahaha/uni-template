@@ -83,6 +83,6 @@ export const useUserStore = defineStore(
     }
   },
   {
-    persist: true, // 开启本地持久化（需要配置持久化插件）
+    persist: true, // 开启持久化
   }
 )

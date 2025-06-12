@@ -28,7 +28,6 @@ export default async ({ command, mode }) => {
     VITE_APP_PROXY,
     VITE_APP_PROXY_PREFIX,
   } = env;
-  console.log("哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈 mode -> ", VITE_APP_PROXY);
   console.log("环境变量 env -> ", env);
   return defineConfig({
     envDir: "./env", // 自定义env目录
