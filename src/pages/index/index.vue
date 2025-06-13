@@ -11,9 +11,10 @@
   <view class="text-center m-4">
     <image class="h-40 w-40" src="@images/niwo.jpg" />
     <view class="my-4">
-      <text class="text-gray-400 font-bold">{{ LYK }}</text>
-    </view>
-    <wd-button @click="handleAccountLogin"> 2登录2 </wd-button>
+      <text class="text-gray-400 font-bold">{{ LYK }}</text> </view
+    ><wd-checkbox v-model="value" @change="handleChange">单选框1</wd-checkbox>
+    <wd-button @click="handleAccountLogin"> 2登录2 </wd-button
+    ><wd-switch v-model="checked" />
   </view>
 </template>
 
@@ -24,7 +25,11 @@ const toast = useToast();
 defineOptions({
   name: "Home",
 });
-console.log(needLoginPages);
+const value = ref<boolean>(true);
+const checked = ref<boolean>(true);
+function handleChange({ value }) {
+  console.log(value);
+}
 const LYK = ref<string>("LTK");
 const handleAccountLogin = async () => {
   uni.navigateTo({
