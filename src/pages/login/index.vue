@@ -21,6 +21,10 @@ defineOptions({
   name: "Login",
 });
 const LYK = ref<string>("LTK");
+
+onLoad((options) => {
+  console.log(options, "options");
+});
 </script>
 
 <style></style>

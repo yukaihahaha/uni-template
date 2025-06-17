@@ -1,7 +1,6 @@
 <route lang="json5">
 {
   layout: "default",
-  needLogin: true,
   name: "Demp",
   style: {
     navigationBarTitleText: "Demp",
@@ -50,7 +49,6 @@ const handleMinus = () => {
   countStore.decrement();
 };
 const handleReset = () => {
-  console.log(22);
   countStore.reset();
 };
 </script>

@@ -11,14 +11,7 @@ interface RequestOptions<T = any> {
   retryDelay?: number; // 重试间隔，默认 1000ms
 }
 
-interface ApiResponse<T = any> {
-  code: number;
-  data: T;
-  message: string;
-}
-
 let loadingCount = 0;
-
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const request = <T = any>(options: RequestOptions): Promise<ApiResponse<T>> => {
@@ -63,13 +56,7 @@ const request = <T = any>(options: RequestOptions): Promise<ApiResponse<T>> => {
               showError(result.message || "业务异常");
               reject(result);
             }
-          } else if (statusCode === 401) {
-            userStore.removeUserInfo();
-            uni.reLaunch({ url: "/pages/login/index" });
-
-            reject(new Error("401 Unauthorized"));
           } else {
-            showError(`服务器错误 (${statusCode})`);
             reject(new Error(`HTTP ${statusCode}`));
           }
         },

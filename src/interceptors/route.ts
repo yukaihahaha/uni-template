@@ -1,7 +1,5 @@
 import { useUserStore } from "@/store";
-import { needLoginPages, getNeedLoginPages } from "@/utils";
-
-let isRedirecting = false;
+import { needLoginPages, getUrlObj, isTabbar } from "@/utils";
 
 type NavigateOptions =
   | UniApp.NavigateToOptions
@@ -11,24 +9,26 @@ type NavigateOptions =
 
 const navigateInterceptor = {
   invoke(options: NavigateOptions) {
+    console.log(12312322222222222222222);
     const userStore = useUserStore();
     const token = userStore.token || "";
     const url = "url" in options && options.url ? options.url : "";
+
     if (!url) return;
 
-    const method = options as any;
-    const isSwitchTab = method && method.openType === "switchTab";
-    const requiresLogin = needLoginPages.some((path) =>
-      isSwitchTab ? path === url : url.startsWith(path)
-    );
+    // 获取页面路径，去除查询参数
+    const { path: targetPath } = getUrlObj(url as string);
 
-    if (requiresLogin && !token) {
-      if (!isRedirecting) {
-        isRedirecting = true;
-        uni.redirectTo({ url: "/pages/login/index" });
-        isRedirecting = false;
-      }
-      return false;
+    // 判断是否是需要登录的页面
+    const isLoginPage = needLoginPages.includes(targetPath);
+
+    if (isLoginPage && !token) {
+      // 如果是需要登录的页面且用户未登录
+      const redirectUrl = encodeURIComponent(url as string); // 编码原路径作为重定向参数
+      const loginPageUrl = `/pages/login/index?redirect=${redirectUrl}`;
+      uni.navigateTo({ url: loginPageUrl });
+
+      return false; // 阻止本次跳转
     }
     // 放行跳转
   },

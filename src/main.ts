@@ -10,6 +10,7 @@ import {
   routeInterceptor,
 } from "./interceptors";
 
+// import { authMixin } from "./mixins/authMixin";   // app.mixin(authMixin);  所有页面都需要登录的情况下使用
 export function createApp() {
   const app = createSSRApp(App);
 
@@ -17,6 +18,7 @@ export function createApp() {
   app.use(routeInterceptor);
   app.use(requestInterceptor);
   app.use(prototypeInterceptor);
+
   // 这里可以添加其他插件或全局配置
 
   return {

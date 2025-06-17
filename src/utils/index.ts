@@ -10,35 +10,21 @@ export const getLastPage = () => {
 
 export const tabBarList = tabBar?.list || [];
 
-/** 判断当前页面是否是 tabbar 页  */
-export const getIsTabbar = () => {
-  try {
-    const lastPage = getLastPage();
-    const currPath = lastPage?.route;
-    return Boolean(tabBar?.list?.some((item) => item.pagePath === currPath));
-  } catch {
-    return false;
-  }
-};
-
 /**
- * 判断指定页面是否是 tabbar 页
- * @param path 页面路径
- * @returns true: 是 tabbar 页 false: 不是 tabbar 页
+ * 判断页面是否是 tabbar 页
+ * @param path 可选，页面路径。不传则判断当前页面
+ * @returns 是否是 tabbar 页
  */
-export const isTableBar = (path: string) => {
-  if (!tabBar) {
-    return false;
-  }
-  if (!tabBar.list.length) {
-    // 通常有 tabBar 的话，list 不能有空，且至少有2个元素，这里其实不用处理
-    return false;
-  }
-  // 这里需要处理一下 path，因为 tabBar 中的 pagePath 是不带 /pages 前缀的
-  if (path.startsWith("/")) {
-    path = path.substring(1);
-  }
-  return !!tabBar.list.find((e) => e.pagePath === path);
+export const isTabbar = (path?: string): boolean => {
+  if (!tabBar?.list?.length) return false;
+
+  const targetPath = path
+    ? path.startsWith("/")
+      ? path.substring(1)
+      : path
+    : getLastPage()?.route;
+
+  return tabBar.list.some((item) => item.pagePath === targetPath);
 };
 
 /**
@@ -139,11 +125,11 @@ export const getUrlObj = (
  * 这里设计得通用一点，可以传递 key 作为判断依据，默认是 needLogin, 与 route-block 配对使用
  * 如果没有传 key，则表示所有的 pages，如果传递了 key, 则表示通过 key 过滤
  */
-export const getAllPages = (key = "needLogin") => {
+export const getAllPages = (key: string) => {
   // 这里处理主包
   const mainPages = [
     ...pages
-      .filter((page) => !key || page[key])
+      .filter((page) => !key || (page as Record<string, any>)[key])
       .map((page) => ({
         ...page,
         path: `/${page.path}`,
@@ -155,7 +141,7 @@ export const getAllPages = (key = "needLogin") => {
     const { root } = subPageObj;
 
     subPageObj.pages
-      .filter((page) => !key || page[key])
+      .filter((page) => !key || (page as Record<string, any>)[key])
       .forEach((page: { path: string } & Record<string, any>) => {
         subPages.push({
           ...page,
@@ -182,3 +168,12 @@ export const getNeedLoginPages = (): string[] =>
 export const needLoginPages: string[] = getAllPages("needLogin").map(
   (page) => page.path
 );
+
+//    此下两个方法是为了做所有页面都登录的情况下替换上方两个
+// export const getNeedLoginPages = (): string[] =>
+//   getAllPages("")
+//     .map((page) => page.path)
+//     .filter((path) => path !== "/pages/login/index"); // 添加 .filter() 排除登录页
+// export const needLoginPages: string[] = getAllPages("")
+//   .map((page) => page.path)
+//   .filter((path) => path !== "/pages/login/index"); // 添加 .filter() 排除登录页

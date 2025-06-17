@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { needLoginPages, isTableBar } from "@/utils/index";
+// import { needLoginPages, isTabbar } from "@/utils/index";
 import { useToast } from "wot-design-uni";
 const toast = useToast();
 defineOptions({
@@ -27,14 +27,17 @@ defineOptions({
 });
 const value = ref<boolean>(true);
 const checked = ref<boolean>(true);
-function handleChange({ value }) {
+function handleChange({ value }: { value: boolean }) {
   console.log(value);
 }
 const LYK = ref<string>("LTK");
 const handleAccountLogin = async () => {
-  uni.navigateTo({
-    url: "/pages-sub/demo/index",
+  uni.switchTab({
+    url: "/pages/my/index?type=1&a=3",
   });
+  // uni.navigateTo({
+  //   url: "/pages/login/index?type=1&a=3",
+  // });
 };
 </script>
 

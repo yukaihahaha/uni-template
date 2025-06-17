@@ -76,7 +76,6 @@
           "path": "demo/index",
           "type": "page",
           "layout": "default",
-          "needLogin": true,
           "name": "Demp",
           "style": {
             "navigationBarTitleText": "Demp"
