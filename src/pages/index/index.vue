@@ -1,9 +1,9 @@
 <route lang="json5" type="home">
 {
-  layout: "default",
-  name: "Home",
+  layout: 'default',
+  name: 'Home',
   style: {
-    navigationBarTitleText: "Home",
+    navigationBarTitleText: 'Home',
   },
 }
 </route>
@@ -19,24 +19,25 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
 // import { needLoginPages, isTabbar } from "@/utils/index";
-import { useToast } from "wot-design-uni";
-const toast = useToast();
+// import { useToast } from "wot-design-uni";
+// const toast = useToast();
 defineOptions({
-  name: "Home",
+  name: 'Home',
 });
 const value = ref<boolean>(true);
 const checked = ref<boolean>(true);
 function handleChange({ value }: { value: boolean }) {
   console.log(value);
 }
-const LYK = ref<string>("LTK");
+const LYK = ref<string>('LTK');
 const handleAccountLogin = async () => {
   uni.switchTab({
-    url: "/pages/my/index?type=1&a=3",
+    url: '/pages/my/index?type=1&a=3',
   });
   // uni.navigateTo({
-  //   url: "/pages/login/index?type=1&a=3",
+  //   "url": "/pages/login/index?type=1&a=3",
   // });
 };
 </script>

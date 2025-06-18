@@ -1,9 +1,9 @@
 <route lang="json5">
 {
-  layout: "default",
-  name: "My",
+  layout: 'default',
+  name: 'My',
   style: {
-    navigationBarTitleText: "My",
+    navigationBarTitleText: 'My',
   },
 }
 </route>
@@ -17,10 +17,11 @@
 </template>
 
 <script lang="ts" setup>
+// import { ref } from "vue";
 defineOptions({
-  name: "My",
+  name: 'My',
 });
-const LYK = ref<string>("LTK");
+const LYK = ref<string>('LTK');
 </script>
 
 <style></style>

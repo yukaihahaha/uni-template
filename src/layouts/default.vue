@@ -1,5 +1,5 @@
 <template>
-  <wd-config-provider :themeVars="themeVars">
+  <wd-config-provider :theme-vars="themeVars">
     <slot />
     <wd-toast />
     <wd-message-box />
@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ConfigProviderThemeVars } from "wot-design-uni";
+import type { ConfigProviderThemeVars } from 'wot-design-uni';
 
 const themeVars: ConfigProviderThemeVars = {
   // colorTheme: 'red',

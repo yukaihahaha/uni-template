@@ -1,5 +1,5 @@
-import { createPinia } from "pinia";
-import { createPersistedState } from "pinia-plugin-persistedstate"; // 数据持久化
+import { createPinia } from 'pinia';
+import { createPersistedState } from 'pinia-plugin-persistedstate'; // 数据持久化
 
 const store = createPinia();
 store.use(
@@ -8,11 +8,11 @@ store.use(
       getItem: uni.getStorageSync,
       setItem: uni.setStorageSync,
     },
-  })
+  }),
 );
 
 export default store;
 
 // 模块统一导出
-export * from "./modules/useCountStore";
-export * from "./modules/useUserStore";
+export * from './modules/useCountStore';
+export * from './modules/useUserStore';

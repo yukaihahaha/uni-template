@@ -1,9 +1,9 @@
 // src/store/useCountStore.ts
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
 export const useCountStore = defineStore(
-  "count",
+  'count',
   () => {
     const count = ref(0);
     const increment = () => {
@@ -24,5 +24,5 @@ export const useCountStore = defineStore(
   },
   {
     persist: true, // 是否开启数据持久化
-  }
+  },
 );

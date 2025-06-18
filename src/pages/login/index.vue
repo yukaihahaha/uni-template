@@ -1,9 +1,9 @@
 <route lang="json5">
 {
-  layout: "default",
-  name: "Login",
+  layout: 'default',
+  name: 'Login',
   style: {
-    navigationBarTitleText: "Login",
+    navigationBarTitleText: 'Login',
   },
 }
 </route>
@@ -18,12 +18,12 @@
 
 <script lang="ts" setup>
 defineOptions({
-  name: "Login",
+  name: 'Login',
 });
-const LYK = ref<string>("LTK");
+const LYK = ref<string>('LTK');
 
 onLoad((options) => {
-  console.log(options, "options");
+  console.log(options, 'options');
 });
 </script>
 

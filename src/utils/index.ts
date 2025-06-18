@@ -1,4 +1,4 @@
-import pagesConfig from "@/pages.json";
+import pagesConfig from '@/pages.json';
 
 const { pages, subPackages, tabBar = { list: [] } } = { ...pagesConfig };
 
@@ -19,7 +19,7 @@ export const isTabbar = (path?: string): boolean => {
   if (!tabBar?.list?.length) return false;
 
   const targetPath = path
-    ? path.startsWith("/")
+    ? path.startsWith('/')
       ? path.substring(1)
       : path
     : getLastPage()?.route;
@@ -47,10 +47,10 @@ export const currRoute = () => {
  */
 export const safeDecodeURIComponent = (
   str: string,
-  maxDecodeTimes = 5
+  maxDecodeTimes = 5,
 ): string => {
   // 参数校验
-  if (!str || typeof str !== "string") return "";
+  if (!str || typeof str !== 'string') return '';
   let decoded = str;
   // 循环解码直至无变化或达到最大次数
   for (let i = 0; i < maxDecodeTimes; i++) {
@@ -62,7 +62,7 @@ export const safeDecodeURIComponent = (
       if (decoded === previous) {
         break;
       }
-    } catch (error) {
+    } catch {
       // 解码失败时返回原始值或上次解码结果
       return previous;
     }
@@ -78,20 +78,20 @@ export const safeDecodeURIComponent = (
  * 输出: {path: /pages/login/index, query: {redirect: /pages/demo/base/route-interceptor}}
  */
 export const getUrlObj = (
-  url: string
+  url: string,
 ): { path: string; query: Record<string, string> } => {
   // 参数校验
-  if (!url || typeof url !== "string") {
-    return { path: "", query: {} };
+  if (!url || typeof url !== 'string') {
+    return { path: '', query: {} };
   }
   // 分离路径和查询字符串
-  const [path, queryStr] = url.split("?");
+  const [path, queryStr] = url.split('?');
   // 如果没有查询字符串，直接返回
   if (!queryStr) {
     return { path, query: {} };
   }
   // 处理可能的hash值
-  const queryPart = queryStr.split("#")[0];
+  const queryPart = queryStr.split('#')[0];
   // 解析查询参数
   const query: Record<string, string> = {};
   // 空查询字符串处理
@@ -99,17 +99,17 @@ export const getUrlObj = (
     return { path, query };
   }
   // 处理每个参数
-  queryPart.split("&").forEach((param) => {
+  queryPart.split('&').forEach((param) => {
     // 跳过空参数
     if (!param) return;
     // 处理只有键没有值的情况
-    if (!param.includes("=")) {
-      query[safeDecodeURIComponent(param)] = "";
+    if (!param.includes('=')) {
+      query[safeDecodeURIComponent(param)] = '';
       return;
     }
     // 分离键值对（处理值中可能包含的等号）
-    const [key, ...values] = param.split("=");
-    const value = values.join("=");
+    const [key, ...values] = param.split('=');
+    const value = values.join('=');
     // 解码键和值
     const decodedKey = safeDecodeURIComponent(key);
     const decodedValue = safeDecodeURIComponent(value);
@@ -159,14 +159,14 @@ export const getAllPages = (key: string) => {
  * 只得到 path 数组
  */
 export const getNeedLoginPages = (): string[] =>
-  getAllPages("needLogin").map((page) => page.path);
+  getAllPages('needLogin').map((page) => page.path);
 
 /**
  * 得到所有的需要登录的 pages，包括主包和分包的
  * 只得到 path 数组
  */
-export const needLoginPages: string[] = getAllPages("needLogin").map(
-  (page) => page.path
+export const needLoginPages: string[] = getAllPages('needLogin').map(
+  (page) => page.path,
 );
 
 //    此下两个方法是为了做所有页面都登录的情况下替换上方两个

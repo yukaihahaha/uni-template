@@ -1,13 +1,13 @@
-import { ref, UnwrapRef } from "vue";
+import { ref, UnwrapRef } from 'vue';
 
 type UseRequestOptions<T> = {
   immediate?: boolean; // 是否立即执行请求，默认 false
-  initialData?: T;     // 初始化数据
+  initialData?: T; // 初始化数据
 };
 
 export default function useRequest<T>(
   func: () => Promise<{ code: number; message: string; data: T }>,
-  options: UseRequestOptions<T> = {}
+  options: UseRequestOptions<T> = {},
 ) {
   const loading = ref(false);
   const error = ref<false | Error>(false);
@@ -23,7 +23,7 @@ export default function useRequest<T>(
         data.value = res.data as UnwrapRef<T>;
         return data.value;
       } else {
-        throw new Error(res.message || "请求失败");
+        throw new Error(res.message || '请求失败');
       }
     } catch (err: any) {
       error.value = err;

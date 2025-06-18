@@ -1,4 +1,3 @@
-import { useUserStore } from "@/store";
 interface RequestOptions<T = any> {
   url: string;
   method?: UniApp.RequestOptions["method"];
@@ -29,24 +28,23 @@ const request = <T = any>(options: RequestOptions): Promise<ApiResponse<T>> => {
 
   if (showLoading) {
     if (loadingCount === 0) {
-      uni.showLoading({ title: loadingTitle, mask: true });
+      uni.showLoading({ "title": loadingTitle, "mask": true });
     }
     loadingCount++;
   }
-  const userStore = useUserStore();
   const attemptRequest = (retryLeft: number): Promise<ApiResponse<T>> => {
     return new Promise((resolve, reject) => {
       uni.request({
-        url: import.meta.env.VITE_SERVER_BASEURL + url,
+        "url": import.meta.env.VITE_SERVER_BASEURL + url,
         method,
         data,
         timeout,
-        header: {
+        "header": {
           "Content-Type": "application/json",
           ...header,
         },
-        success: (res) => {
-          const { statusCode, data: rawData } = res;
+        "success": (res) => {
+          const { statusCode, "data": rawData } = res;
           const result = rawData as ApiResponse<T>;
 
           if (statusCode === 200) {
@@ -60,7 +58,7 @@ const request = <T = any>(options: RequestOptions): Promise<ApiResponse<T>> => {
             reject(new Error(`HTTP ${statusCode}`));
           }
         },
-        fail: (err) => {
+        "fail": (err) => {
           // 网络异常才重试
           if (retryLeft > 0) {
             delay(retryDelay).then(() => {
@@ -89,7 +87,7 @@ const request = <T = any>(options: RequestOptions): Promise<ApiResponse<T>> => {
 };
 
 function showError(msg: string) {
-  uni.showToast({ title: msg, icon: "none", duration: 2000 });
+  uni.showToast({ "title": msg, "icon": "none", "duration": 2000 });
 }
 
 export default request;

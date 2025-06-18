@@ -1,9 +1,9 @@
 <route lang="json5">
 {
-  layout: "default",
-  name: "Demp",
+  layout: 'default',
+  name: 'Demp',
   style: {
-    navigationBarTitleText: "Demp",
+    navigationBarTitleText: 'Demp',
   },
 }
 </route>
@@ -34,12 +34,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useCountStore } from "@/store";
+import { useCountStore } from '@/store';
 defineOptions({
-  name: "Demo",
+  name: 'Demo',
 });
 const countStore = useCountStore();
-const LYK = ref<string>("LTK");
+const LYK = ref<string>('LTK');
 
 const handlePlus = () => {
   countStore.increment();

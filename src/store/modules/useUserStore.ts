@@ -1,32 +1,32 @@
 // store/modules/user.ts
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import request from '@/utils/request'
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
+import request from '@/utils/request';
 
 export const useUserStore = defineStore(
   'user',
   () => {
     /** 用户信息 */
-    const userInfo = ref<any>(null)
+    const userInfo = ref<any>(null);
 
     /** Token */
-    const token = ref<string>('')
+    const token = ref<string>('');
 
     /** 设置用户信息 */
     const setUserInfo = (val: any) => {
-      userInfo.value = val
-    }
+      userInfo.value = val;
+    };
 
     /** 设置 Token */
     const setToken = (val: string) => {
-      token.value = val
-    }
+      token.value = val;
+    };
 
     /** 清除用户信息和 Token */
     const removeUserInfo = () => {
-      userInfo.value = null
-      token.value = ''
-    }
+      userInfo.value = null;
+      token.value = '';
+    };
 
     /** 登录 */
     const login = async (data: { username: string; password: string }) => {
@@ -35,10 +35,10 @@ export const useUserStore = defineStore(
         method: 'POST',
         data,
         showLoading: true,
-      })
-      setToken(res.data.token)
-      await getUserInfo()
-    }
+      });
+      setToken(res.data.token);
+      await getUserInfo();
+    };
 
     /** 获取用户信息 */
     const getUserInfo = async () => {
@@ -49,9 +49,9 @@ export const useUserStore = defineStore(
           Authorization: token.value,
         },
         showLoading: false,
-      })
-      setUserInfo(res.data)
-    }
+      });
+      setUserInfo(res.data);
+    };
 
     /** 退出登录 */
     const logout = async () => {
@@ -63,13 +63,13 @@ export const useUserStore = defineStore(
             Authorization: token.value,
           },
           showLoading: false,
-        })
-      } catch (e) {
+        });
+      } catch {
         // 忽略错误
       }
-      removeUserInfo()
-      uni.redirectTo({ url: '/pages/login/index' })
-    }
+      removeUserInfo();
+      uni.redirectTo({ url: '/pages/login/index' });
+    };
 
     return {
       userInfo,
@@ -80,9 +80,9 @@ export const useUserStore = defineStore(
       login,
       getUserInfo,
       logout,
-    }
+    };
   },
   {
     persist: true, // 开启持久化
-  }
-)
+  },
+);

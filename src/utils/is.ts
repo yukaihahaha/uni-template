@@ -11,27 +11,32 @@ export const isArray = Array.isArray;
  * @param val 任意值
  * @returns 类型名称字符串，如 "String"、"Number"、"Object" 等
  */
-export const getType = (val: unknown): string => toString.call(val).slice(8, -1);
+export const getType = (val: unknown): string =>
+  toString.call(val).slice(8, -1);
 
 /** ----------- 原始类型判断 ----------- */
 
 /** 判断是否为字符串 */
-export const isString = (val: unknown): val is string => typeof val === "string";
+export const isString = (val: unknown): val is string =>
+  typeof val === 'string';
 
 /** 判断是否为数字（排除 NaN） */
 export const isNumber = (val: unknown): val is number =>
-  typeof val === "number" && !isNaN(val);
+  typeof val === 'number' && !isNaN(val);
 
 /** 判断是否为布尔值 */
-export const isBoolean = (val: unknown): val is boolean => typeof val === "boolean";
+export const isBoolean = (val: unknown): val is boolean =>
+  typeof val === 'boolean';
 
 /** 判断是否为函数 */
-export const isFunction = (val: unknown): val is Function => typeof val === "function";
+export const isFunction = (val: unknown): val is (...args: any[]) => any =>
+  typeof val === 'function';
 
 /** ----------- 空值判断 ----------- */
 
 /** 判断是否为 undefined */
-export const isUndefined = (val: unknown): val is undefined => typeof val === "undefined";
+export const isUndefined = (val: unknown): val is undefined =>
+  typeof val === 'undefined';
 
 /** 判断是否为 null */
 export const isNull = (val: unknown): val is null => val === null;
@@ -46,7 +51,7 @@ export const isNil = (val: unknown): val is null | undefined => val == null;
  * 包括 Date、Map、Set 等
  */
 export const isObject = (val: unknown): val is Record<any, any> =>
-  val !== null && typeof val === "object" && !isArray(val);
+  val !== null && typeof val === 'object' && !isArray(val);
 
 /**
  * 判断是否为纯对象（由 {} 或 new Object() 创建的对象）
@@ -55,7 +60,7 @@ export const isObject = (val: unknown): val is Record<any, any> =>
  * @returns 是否为纯对象
  */
 export const isPlainObject = (val: unknown): val is Record<string, any> => {
-  if (getType(val) !== "Object") return false;
+  if (getType(val) !== 'Object') return false;
 
   // 额外排除无原型对象（Object.create(null)）
   if (Object.getPrototypeOf(val) === null) return false;
@@ -77,20 +82,21 @@ export const isPromise = <T = any>(val: unknown): val is Promise<T> =>
   isFunction((val as any).catch);
 
 /** 判断是否为 Map 对象 */
-export const isMap = (val: unknown): val is Map<any, any> => getType(val) === "Map";
+export const isMap = (val: unknown): val is Map<any, any> =>
+  getType(val) === 'Map';
 
 /** 判断是否为 Set 对象 */
-export const isSet = (val: unknown): val is Set<any> => getType(val) === "Set";
+export const isSet = (val: unknown): val is Set<any> => getType(val) === 'Set';
 
 /** ----------- 浏览器相关（仅 H5 有效） ----------- */
 
 /** 判断是否为浏览器的 Window 对象 */
 export const isWindow = (val: unknown): val is Window =>
-  typeof window !== "undefined" && val === window;
+  typeof window !== 'undefined' && val === window;
 
 /** 判断是否为浏览器中的 DOM 元素 */
 export const isElement = (val: unknown): val is Element =>
-  typeof Element !== "undefined" && val instanceof Element;
+  typeof Element !== 'undefined' && val instanceof Element;
 
 /** ----------- 通用判断 ----------- */
 
@@ -119,7 +125,7 @@ export const isEmpty = (val: unknown): boolean => {
 };
 
 /**
- * 递归判断对象或数组中是否存在至少一个“非空值”
+ * 递归判断对象或数组中是否存在至少一个"非空值"
  * - 支持类型：数组、普通对象、Map、Set
  * - 其他类型直接判断是否非空
  * @param val 任意数据
@@ -133,12 +139,14 @@ export const hasDeepValue = (val: unknown): boolean => {
   // 只调用一次 getType，避免重复
   const type = getType(val);
 
-  if (type === "Object") {
+  if (type === 'Object') {
     return Object.values(val as Record<string, unknown>).some(hasDeepValue);
   }
 
-  if (type === "Map" || type === "Set") {
-    return Array.from(val as Map<any, unknown> | Set<unknown>).some(hasDeepValue);
+  if (type === 'Map' || type === 'Set') {
+    return Array.from(val as Map<any, unknown> | Set<unknown>).some(
+      hasDeepValue,
+    );
   }
 
   return !isEmpty(val);
