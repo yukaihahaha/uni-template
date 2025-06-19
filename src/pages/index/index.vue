@@ -42,4 +42,7 @@ const handleAccountLogin = async () => {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+//
+</style>
+

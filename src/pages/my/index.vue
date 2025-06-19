@@ -24,4 +24,7 @@ defineOptions({
 const LYK = ref<string>('LTK');
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+//
+</style>
+

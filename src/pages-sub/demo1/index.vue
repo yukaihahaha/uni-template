@@ -3,7 +3,7 @@
   layout: 'default',
   name: 'Demp',
   style: {
-    navigationBarTitleText: 'Demp',
+    navigationBarTitleText: 'Demo1',
   },
 }
 </route>
@@ -36,7 +36,7 @@
 <script lang="ts" setup>
 import { useCountStore } from '@/store';
 defineOptions({
-  name: 'Demo',
+  name: 'Demo1',
 });
 const countStore = useCountStore();
 const LYK = ref<string>('LTK');
@@ -53,4 +53,6 @@ const handleReset = () => {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+//
+</style>

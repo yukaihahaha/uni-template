@@ -73,13 +73,17 @@
       "root": "pages-sub",
       "pages": [
         {
-          "path": "demo/index",
+          "path": "demo1/index",
           "type": "page",
           "layout": "default",
           "name": "Demp",
           "style": {
-            "navigationBarTitleText": "Demp"
+            "navigationBarTitleText": "Demo1"
           }
+        },
+        {
+          "path": "demo2/index",
+          "type": "page"
         }
       ]
     }
