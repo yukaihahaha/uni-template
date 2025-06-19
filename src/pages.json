@@ -83,7 +83,11 @@
         },
         {
           "path": "demo2/index",
-          "type": "page"
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "Demo2"
+          }
         }
       ]
     }

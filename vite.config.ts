@@ -3,9 +3,10 @@ import Uni from "@dcloudio/vite-plugin-uni";
 import * as path from "node:path";
 import AutoImport from "unplugin-auto-import/vite"; // 自动导入Vue、uni-app相关API插件。
 import Components from "@uni-helper/vite-plugin-uni-components";
-import { WotResolver } from "@uni-helper/vite-plugin-uni-components/resolvers";
-import ViteRestart from "vite-plugin-restart";
+import { WotResolver } from "@uni-helper/vite-plugin-uni-components/resolvers";// 引入wot-ui 
 
+// @see https://github.com/antfu/vite-plugin-restart?tab=readme-ov-file#readme   监听文件来重启 Vite 服务器
+import ViteRestart from "vite-plugin-restart"; //只在h5生效
 // @see https://uni-helper.js.org/vite-plugin-uni-pages  让你无需手动配置pages.json 页面配置router自动生成。
 import UniPages from "@uni-helper/vite-plugin-uni-pages";
 // @see https://github.com/uni-helper/vite-plugin-uni-manifest  uni 插件，支持 manifest.config.ts 编写 manifest.json
