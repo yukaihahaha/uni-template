@@ -12,29 +12,28 @@
     <image class="h-40 w-40" src="@images/niwo.jpg" />
     <view class="my-4">
       <text class="text-gray-400 font-bold">{{ LYK }}</text> </view
-    ><wd-checkbox v-model="value" @change="handleChange">单选33框1</wd-checkbox>
-    <wd-button @click="handleAccountLogin"> 2登录2 </wd-button
-    ><wd-switch v-model="checked" />
+    ><view class="my-2">
+    </view>
+    <wd-button @click="handleAccountLogin"> Login </wd-button>
   </view>
 </template>
 
 <script lang="ts" setup>
-import { needLoginPages, isTabbar } from "@/utils/index";
 import { useToast } from "wot-design-uni";
+
 const toast = useToast();
+
 defineOptions({
   name: "Home",
 });
-const value = ref<boolean>(true);
-const checked = ref<boolean>(true);
-function handleChange({ value }: { value: boolean }) {
-  console.log(value);
-}
+
 const LYK = ref<string>("LTK");
-const handleAccountLogin =async () => {
-  uni.navigateTo({
-    url: "/pages/login/index?type=1&a=3",
-  });
+
+const handleAccountLogin = async () => {
+  // uni.navigateTo({
+  //   url: "/pages/login/index?type=1&a=3",
+  // });
+  toast.success("321");
 };
 </script>
 
