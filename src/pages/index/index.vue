@@ -19,10 +19,9 @@
 </template>
 
 <script lang="ts" setup>
-import toast from "@/utils/toast";
-// import { needLoginPages, isTabbar } from "@/utils/index";
-// import { useToast } from "wot-design-uni";
-// const toast = useToast();
+import { needLoginPages, isTabbar } from "@/utils/index";
+import { useToast } from "wot-design-uni";
+const toast = useToast();
 defineOptions({
   name: "Home",
 });
@@ -32,15 +31,10 @@ function handleChange({ value }: { value: boolean }) {
   console.log(value);
 }
 const LYK = ref<string>("LTK");
-const handleAccountLogin = () => {
-  // uni.switchTab({
-  //   url: "/pages/my/index?type=1&a=3",
-  // });
-  toast("123");
-  console.log(123, "dayin");
-  // uni.navigateTo({
-  //   "url": "/pages/login/index?type=1&a=3",
-  // });
+const handleAccountLogin =async () => {
+  uni.navigateTo({
+    url: "/pages/login/index?type=1&a=3",
+  });
 };
 </script>
 
