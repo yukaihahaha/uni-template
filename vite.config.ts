@@ -20,7 +20,7 @@ import UniLayouts from "@uni-helper/vite-plugin-uni-layouts";
 export default async ({ command, mode }) => {
   const { default: UnoCss } = await import("unocss/vite");
   const env = loadEnv(mode, path.resolve(process.cwd(), "env"));
-  const { UNI_PLATFORM } = process.env; // 从环境变量中获取UNI_PLATFORM
+  const { UNI_PLATFORM } = process.env; // 从环境变量中获取UNI_PLATFORM  得到 mp-weixin, h5, app 等
   const {
     VITE_APP_PORT,
     VITE_SERVER_BASEURL,
@@ -59,9 +59,7 @@ export default async ({ command, mode }) => {
         : undefined,
     },
     build: {
-      sourcemap: false,
-      // 方便非h5端调试
-      // sourcemap: VITE_SHOW_SOURCEMAP === 'true', // 默认是false
+      sourcemap: VITE_SHOW_SOURCEMAP === 'true',
       target: "es6",
       // 开发环境不用压缩
       minify: mode === "development" ? false : "terser",
